@@ -1,38 +1,50 @@
 package tacos;
+
+import lombok.Data;
+import org.hibernate.validator.constraints.CreditCardNumber;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import org.hibernate.validator.constraints.CreditCardNumber;
-import java.util.List;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
-import lombok.Data;
+import java.util.Date;
+import java.util.List;
 
 @Data
-public class TacoOrder {
+public class TacoOrder implements Serializable {
 
-    @NotBlank(message="Delivery name is required")
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
+
+    private Date placedAt;
+
+    @NotBlank(message = "Delivery name is required")
     private String deliveryName;
 
-    @NotBlank(message="Street is required")
+    @NotBlank(message = "Street is required")
     private String deliveryStreet;
 
-    @NotBlank(message="City is required")
+    @NotBlank(message = "City is required")
     private String deliveryCity;
 
-    @NotBlank(message="State is required")
+    @NotBlank(message = "State is required")
+    @Size(min = 2, max = 2, message = "State has to be two characters long")
     private String deliveryState;
 
-    @NotBlank(message="Zip code is required")
+    @NotBlank(message = "Zip code is required")
     private String deliveryZip;
 
-    @CreditCardNumber(message="Not a valid credit card number")
+    @CreditCardNumber(message = "Not a valid credit card number (i.e. 49927398716)")
     private String ccNumber;
 
-    @Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",
-            message="Must be formatted MM/YY")
+    @Pattern(regexp = "^(0[1-9]|1[0-2])([/])([1-9][0-9])$",
+            message = "Must be formatted MM/YY")
     private String ccExpiration;
 
-    @Digits(integer=3, fraction=0, message="Invalid CVV")
+    @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
 
     private List<Taco> tacos = new ArrayList<>();
@@ -40,4 +52,5 @@ public class TacoOrder {
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
     }
+
 }
