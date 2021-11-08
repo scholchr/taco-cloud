@@ -1,8 +1,8 @@
 package tacos.data;
 
-import java.util.Optional;
-
 import tacos.Ingredient;
+
+import java.util.Optional;
 
 public interface IngredientRepository {
 

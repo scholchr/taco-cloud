@@ -1,10 +1,12 @@
 package tacos.data;
 
-import java.util.Optional;
-
 import tacos.TacoOrder;
 
-public interface OrderRepository {
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
 
   TacoOrder save(TacoOrder order);
 

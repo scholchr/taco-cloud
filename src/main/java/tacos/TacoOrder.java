@@ -1,7 +1,6 @@
 package tacos;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.CreditCardNumber;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +10,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.hibernate.validator.constraints.CreditCardNumber;
 
 @Data
 public class TacoOrder implements Serializable {
